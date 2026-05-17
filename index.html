@@ -1066,23 +1066,33 @@
       </div>
 
       <div class="calc fi" style="transition-delay:.14s">
-        <div class="calc__title">Estimativa de Renda Avícola</div>
+        <div class="calc__title">Potencial de Receita Bruta · Operador</div>
         <div class="calc-field">
           <label>Nº de galpões: <strong id="galp-v">2</strong></label>
           <input type="range" id="sl-galp" min="1" max="4" value="2" step="1" oninput="calcAgro(this.value)">
-          <small style="color:var(--muted); font-size:.7rem">1 galpão padrão = ~1.200 m² · ~15.000 aves</small>
+          <small style="color:var(--muted); font-size:.7rem">1 galpão padrão = ~1.200 m² · ~15.000 aves · ciclo 45 dias</small>
         </div>
         <div class="calc-result">
-          <div class="res-lbl">Renda mensal (arrendamento)</div>
-          <div class="res-val" id="agro-r">R$ 4.000/mês</div>
-          <div class="res-sub" id="agro-s"></div>
+          <div class="res-lbl">Receita bruta por lote</div>
+          <div class="res-val" id="agro-lote">R$ 412.500</div>
+          <div class="res-sub" id="agro-s">30.000 aves · 75.000 kg · R$5,50/kg</div>
         </div>
         <div class="calc-result">
-          <div class="res-lbl">Área utilizada pelos galpões</div>
-          <div class="res-val" id="agro-a" style="font-size:1.25rem">~3.600 m²</div>
-          <div class="res-sub">Galpões + pátio. Restante do terreno disponível para outros usos.</div>
+          <div class="res-lbl">Receita bruta anual (8 lotes)</div>
+          <div class="res-val" id="agro-anual">R$ 3,30 M</div>
+          <div class="res-sub">8 lotes/ano · ciclo ~45 dias</div>
         </div>
-        <p class="disc">Estimativa de arrendamento avícola em integração, interior RJ (mai/2026). Valores reais dependem de negociação com integrador. Não constitui garantia.</p>
+        <div class="calc-result">
+          <div class="res-lbl">Receita bruta mensal média</div>
+          <div class="res-val" id="agro-r">R$ 275.000/mês</div>
+          <div class="res-sub" style="color:var(--gold); font-size:.76rem">média anualizada</div>
+        </div>
+        <div class="calc-result margem">
+          <div class="res-lbl">Área dos galpões + pátio</div>
+          <div class="res-val" id="agro-a" style="font-size:1.2rem">~3.600 m²</div>
+          <div class="res-sub">Restante livre para solar ou telecom</div>
+        </div>
+        <p class="disc">Receita bruta do operador. Frango de corte, atacado RJ (R$5,50/kg, mai/2026). 8 lotes/ano · 15.000 aves/galpão · peso médio 2,5 kg. Não inclui custos de operação. ZR3 — confirmar uso com prefeitura. Não constitui garantia de rentabilidade.</p>
       </div>
     </div>
   </div>
@@ -1299,12 +1309,20 @@ function calcSolar(v) {
 }
 calcSolar(8);
 
-const rendaG = 2000, areaG = 1800;
+const avesPorGalp = 15000, pesoMedioKg = 2.5, precoKgMercado = 5.50, lotesPorAno = 8, areaG = 1800;
 function calcAgro(v) {
+  v = +v;
   document.getElementById('galp-v').textContent = v;
-  document.getElementById('agro-r').textContent = 'R$ ' + (v * rendaG).toLocaleString('pt-BR') + '/mês';
-  document.getElementById('agro-s').textContent = v + ' galpão(ões) · R$' + rendaG.toLocaleString('pt-BR') + '/galpão/mês';
-  document.getElementById('agro-a').textContent = '~' + (v * areaG).toLocaleString('pt-BR') + ' m²';
+  const totalAves   = v * avesPorGalp;
+  const kgPorLote   = totalAves * pesoMedioKg;
+  const receitaLote = kgPorLote * precoKgMercado;
+  const receitaAnual= receitaLote * lotesPorAno;
+  const receitaMes  = receitaAnual / 12;
+  document.getElementById('agro-lote').textContent  = 'R$ ' + Math.round(receitaLote).toLocaleString('pt-BR');
+  document.getElementById('agro-anual').textContent = 'R$ ' + (receitaAnual / 1e6).toFixed(2) + ' M';
+  document.getElementById('agro-r').textContent     = 'R$ ' + Math.round(receitaMes).toLocaleString('pt-BR') + '/mês';
+  document.getElementById('agro-s').textContent     = totalAves.toLocaleString('pt-BR') + ' aves · ' + kgPorLote.toLocaleString('pt-BR') + ' kg · R$' + precoKgMercado.toFixed(2) + '/kg';
+  document.getElementById('agro-a').textContent     = '~' + (v * areaG).toLocaleString('pt-BR') + ' m²';
 }
 calcAgro(2);
 
