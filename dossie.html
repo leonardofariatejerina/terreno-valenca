@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dossiê de Investimento — Chácara Recanto do Padre Tomás</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #1A1A18;
+      --gold:    #C8A96E;
+      --gold-dk: #A8893E;
+      --white:   #F5F2EC;
+      --muted:   #ABA69E;
+      --ink:     #1A1A18;
+      --cream:   #F0EDE6;
+    }
+
+    html { font-size: 10pt; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #2a2a28;
+      color: var(--white);
+      line-height: 1.55;
+    }
+
+    /* ===== PAGE CONTAINER ===== */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 12mm;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ===== DARK PAGES (capa, próximos passos) ===== */
+    .page-dark {
+      background: var(--bg);
+      color: var(--white);
+    }
+
+    /* ===== LIGHT PAGES (internas) ===== */
+    .page-light {
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      line-height: 1.2;
+    }
+
+    /* ===== HEADER DE PÁGINA INTERNA ===== */
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7mm 10mm 5mm;
+      border-bottom: 0.5pt solid var(--gold);
+    }
+
+    .page-light .page-header {
+      border-bottom-color: var(--gold-dk);
+    }
+
+    .page-header-property {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 7pt;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .page-dark .page-header-property { color: var(--muted); }
+    .page-light .page-header-property { color: #777; }
+
+    .page-header-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 8pt;
+      font-style: italic;
+    }
+
+    .page-dark .page-header-num { color: var(--gold); }
+    .page-light .page-header-num { color: var(--gold-dk); }
+
+    /* ===== FOOTER DISCLAIMER ===== */
+    .page-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 4mm 10mm;
+      border-top: 0.5pt solid rgba(200, 169, 110, 0.25);
+    }
+
+    .page-footer p {
+      font-size: 6pt;
+      letter-spacing: 0.04em;
+    }
+
+    .page-dark .page-footer p { color: #5a5a56; }
+    .page-light .page-footer p { color: #aaa; }
+
+    /* ===== GOLD DIVIDER ===== */
+    .gold-line {
+      width: 40mm;
+      height: 1pt;
+      background: var(--gold);
+      margin: 4mm 0;
+    }
+
+    .page-light .gold-line { background: var(--gold-dk); }
+
+    /* ===== CONTENT AREA ===== */
+    .content {
+      padding: 7mm 10mm 18mm;
+    }
+
+    /* ===== SECTION LABEL ===== */
+    .section-label {
+      font-size: 6.5pt;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 3mm;
+    }
+
+    .page-dark .section-label { color: var(--gold); }
+    .page-light .section-label { color: var(--gold-dk); }
+
+    /* ===== CARDS GRID ===== */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4mm;
+      margin: 5mm 0;
+    }
+
+    .card {
+      padding: 5mm;
+      border: 0.5pt solid rgba(200, 169, 110, 0.35);
+      border-radius: 1mm;
+    }
+
+    .page-light .card {
+      background: #fff;
+      border-color: rgba(168, 137, 62, 0.35);
+    }
+
+    .card-icon {
+      font-size: 16pt;
+      margin-bottom: 2mm;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 10pt;
+      font-weight: 600;
+      margin-bottom: 1mm;
+    }
+
+    .page-dark .card-title { color: var(--gold); }
+    .page-light .card-title { color: var(--gold-dk); }
+
+    .card-value {
+      font-size: 11pt;
+      font-weight: 600;
+      margin-bottom: 1mm;
+    }
+
+    .page-dark .card-value { color: var(--white); }
+    .page-light .card-value { color: var(--ink); }
+
+    .card-desc {
+      font-size: 7.5pt;
+    }
+
+    .page-dark .card-desc { color: var(--muted); }
+    .page-light .card-desc { color: #666; }
+
+    /* ===== TABLE ===== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8pt;
+      margin: 4mm 0;
+    }
+
+    th {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 6.5pt;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2.5mm 3mm;
+      text-align: left;
+    }
+
+    .page-dark th {
+      background: rgba(200, 169, 110, 0.12);
+      color: var(--gold);
+      border-bottom: 0.5pt solid rgba(200, 169, 110, 0.3);
+    }
+
+    .page-light th {
+      background: rgba(168, 137, 62, 0.08);
+      color: var(--gold-dk);
+      border-bottom: 0.5pt solid rgba(168, 137, 62, 0.3);
+    }
+
+    td {
+      padding: 2.5mm 3mm;
+      vertical-align: top;
+    }
+
+    .page-dark td {
+      border-bottom: 0.5pt solid rgba(255,255,255,0.06);
+      color: var(--white);
+    }
+
+    .page-light td {
+      border-bottom: 0.5pt solid rgba(0,0,0,0.06);
+      color: var(--ink);
+    }
+
+    td:first-child {
+      font-weight: 500;
+    }
+
+    .page-dark td:first-child { color: var(--muted); }
+    .page-light td:first-child { color: #666; }
+
+    td:last-child {
+      font-weight: 600;
+    }
+
+    /* ===== TWO COLUMNS ===== */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6mm;
+      margin: 4mm 0;
+    }
+
+    /* ===== PHOTO PLACEHOLDER ===== */
+    .photo-placeholder {
+      border: 1pt dashed rgba(200, 169, 110, 0.4);
+      border-radius: 1mm;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 5mm;
+      text-align: center;
+      min-height: 28mm;
+    }
+
+    .page-light .photo-placeholder {
+      border-color: rgba(168, 137, 62, 0.4);
+      background: rgba(168, 137, 62, 0.03);
+    }
+
+    .photo-placeholder-icon {
+      font-size: 18pt;
+      margin-bottom: 2mm;
+      opacity: 0.4;
+    }
+
+    .photo-placeholder-label {
+      font-size: 7pt;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1mm;
+    }
+
+    .page-dark .photo-placeholder-label { color: var(--muted); }
+    .page-light .photo-placeholder-label { color: #888; }
+
+    .photo-placeholder-hint {
+      font-size: 6.5pt;
+    }
+
+    .page-dark .photo-placeholder-hint { color: #555; }
+    .page-light .photo-placeholder-hint { color: #aaa; }
+
+    /* ===== HIGHLIGHT BOX ===== */
+    .highlight-box {
+      padding: 4mm 5mm;
+      border-left: 2pt solid var(--gold);
+      margin: 4mm 0;
+    }
+
+    .page-dark .highlight-box {
+      background: rgba(200, 169, 110, 0.07);
+    }
+
+    .page-light .highlight-box {
+      background: rgba(168, 137, 62, 0.06);
+      border-left-color: var(--gold-dk);
+    }
+
+    .highlight-box p {
+      font-size: 8.5pt;
+      font-style: italic;
+    }
+
+    .page-dark .highlight-box p { color: var(--white); }
+    .page-light .highlight-box p { color: var(--ink); }
+
+    /* ===== FICHA TECNICA ===== */
+    .ficha-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3mm;
+      margin: 4mm 0;
+    }
+
+    .ficha-item {
+      padding: 3mm;
+      border: 0.5pt solid rgba(200, 169, 110, 0.2);
+      border-radius: 1mm;
+    }
+
+    .page-light .ficha-item {
+      background: #fff;
+      border-color: rgba(168, 137, 62, 0.2);
+    }
+
+    .ficha-label {
+      font-size: 6pt;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1mm;
+    }
+
+    .page-dark .ficha-label { color: var(--muted); }
+    .page-light .ficha-label { color: #888; }
+
+    .ficha-value {
+      font-size: 9pt;
+      font-weight: 600;
+    }
+
+    .page-dark .ficha-value { color: var(--gold); }
+    .page-light .ficha-value { color: var(--gold-dk); }
+
+    /* ===== STEPS ===== */
+    .steps {
+      display: flex;
+      gap: 5mm;
+      margin: 8mm 0;
+      align-items: flex-start;
+    }
+
+    .step {
+      flex: 1;
+      text-align: center;
+    }
+
+    .step-num {
+      width: 12mm;
+      height: 12mm;
+      border-radius: 50%;
+      border: 1.5pt solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 3mm;
+      font-family: 'Playfair Display', serif;
+      font-size: 13pt;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .step-arrow {
+      flex: 0 0 10mm;
+      text-align: center;
+      padding-top: 3mm;
+      font-size: 14pt;
+      color: rgba(200, 169, 110, 0.4);
+    }
+
+    .step-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 10pt;
+      font-weight: 600;
+      margin-bottom: 1.5mm;
+    }
+
+    .step-desc {
+      font-size: 7.5pt;
+    }
+
+    /* ===== CONTACT BLOCK ===== */
+    .contact-block {
+      display: flex;
+      gap: 5mm;
+      margin: 5mm 0;
+    }
+
+    .contact-item {
+      flex: 1;
+      padding: 4mm 5mm;
+      border: 1pt solid var(--gold);
+      border-radius: 1mm;
+      text-align: center;
+    }
+
+    .contact-item a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .contact-label {
+      font-size: 6.5pt;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.5mm;
+      color: var(--gold);
+    }
+
+    .contact-value {
+      font-size: 11pt;
+      font-weight: 600;
+    }
+
+    /* ===== NOTE BOX ===== */
+    .note-box {
+      padding: 3mm 4mm;
+      border-radius: 1mm;
+      margin: 4mm 0;
+    }
+
+    .page-dark .note-box {
+      background: rgba(255,255,255,0.04);
+      border: 0.5pt solid rgba(255,255,255,0.1);
+    }
+
+    .page-light .note-box {
+      background: rgba(0,0,0,0.03);
+      border: 0.5pt solid rgba(0,0,0,0.08);
+    }
+
+    .note-box p {
+      font-size: 7.5pt;
+    }
+
+    .page-dark .note-box p { color: var(--muted); }
+    .page-light .note-box p { color: #666; }
+
+    /* ===== NEXT STEP BOX ===== */
+    .next-step {
+      padding: 4mm 5mm;
+      margin-top: 5mm;
+      border-top: 0.5pt solid rgba(200, 169, 110, 0.25);
+    }
+
+    .page-light .next-step { border-top-color: rgba(168, 137, 62, 0.25); }
+
+    .next-step-label {
+      font-size: 6pt;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.5mm;
+    }
+
+    .page-dark .next-step-label { color: var(--gold); }
+    .page-light .next-step-label { color: var(--gold-dk); }
+
+    .next-step p {
+      font-size: 8pt;
+      font-style: italic;
+    }
+
+    .page-dark .next-step p { color: var(--muted); }
+    .page-light .next-step p { color: #555; }
+
+    /* ===== BODY TEXT ===== */
+    .body-text {
+      font-size: 8.5pt;
+      line-height: 1.6;
+      margin-bottom: 3mm;
+    }
+
+    .page-dark .body-text { color: #ccc; }
+    .page-light .body-text { color: #333; }
+
+    /* ===== INLINE SEPARATOR ===== */
+    .separator {
+      height: 6mm;
+      display: block;
+    }
+
+    /* ===== WATERMARK ===== */
+    .watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-35deg);
+      font-family: 'Playfair Display', serif;
+      font-size: 48pt;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(200, 169, 110, 0.04);
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page > * { position: relative; z-index: 1; }
+
+    /* ===== SCREEN SEPARATOR ===== */
+    .page-gap {
+      height: 6mm;
+    }
+
+    /* ===== CAPA ESPECÍFICA ===== */
+    .cover-inner {
+      display: flex;
+      flex-direction: column;
+      min-height: 297mm;
+      padding: 14mm 12mm;
+    }
+
+    .cover-badge {
+      display: inline-block;
+      font-size: 6.5pt;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 0.5pt solid rgba(200, 169, 110, 0.4);
+      padding: 1.5mm 4mm;
+      border-radius: 0.5mm;
+      margin-bottom: 10mm;
+    }
+
+    .cover-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .cover-eyebrow {
+      font-size: 7pt;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4mm;
+    }
+
+    .cover-h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 30pt;
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 3mm;
+    }
+
+    .cover-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: 12pt;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 8mm;
+    }
+
+    .cover-date {
+      font-size: 8pt;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 6mm;
+    }
+
+    .cover-prepared {
+      font-size: 8pt;
+      color: var(--muted);
+      margin-top: 4mm;
+    }
+
+    .cover-prepared-input {
+      display: inline-block;
+      width: 50mm;
+      border-bottom: 0.5pt solid var(--gold);
+      margin-left: 2mm;
+      color: var(--white);
+    }
+
+    .cover-footer {
+      border-top: 0.5pt solid rgba(200, 169, 110, 0.2);
+      padding-top: 5mm;
+    }
+
+    .cover-footer-contacts {
+      display: flex;
+      gap: 6mm;
+      margin-top: 2mm;
+    }
+
+    .cover-footer-contact {
+      font-size: 8pt;
+    }
+
+    .cover-footer-contact a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .cover-footer-conf {
+      font-size: 6pt;
+      letter-spacing: 0.1em;
+      color: #444;
+      text-transform: uppercase;
+      margin-bottom: 2mm;
+    }
+
+    /* ===== PRÓXIMOS PASSOS ESPECÍFICO ===== */
+    .cta-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      padding: 10mm 12mm;
+    }
+
+    .cta-h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26pt;
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 3mm;
+    }
+
+    .cta-subtitle {
+      font-size: 10pt;
+      color: var(--muted);
+      margin-bottom: 8mm;
+      font-style: italic;
+    }
+
+    /* ===== PRINT STYLES ===== */
+    @media print {
+      @page { size: A4; margin: 0; }
+
+      html, body {
+        background: transparent !important;
+        width: 210mm;
+      }
+
+      body {
+        background: transparent !important;
+        color: #1A1A18 !important;
+      }
+
+      .page {
+        margin: 0 auto;
+        page-break-after: always;
+        min-height: 297mm;
+        width: 210mm;
+      }
+
+      .page:last-child {
+        page-break-after: avoid;
+      }
+
+      .page-gap { display: none; }
+
+      .page-dark {
+        background: #1A1A18 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .page-light {
+        background: #F0EDE6 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      a { color: inherit; text-decoration: none; }
+
+      .card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .ficha-item { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ================================================ -->
+<!-- PÁGINA 1: CAPA -->
+<!-- ================================================ -->
+<div class="page page-dark">
+  <div class="watermark">Confidencial</div>
+  <div class="cover-inner">
+
+    <div>
+      <span class="cover-badge">Confidencial · Distribuição Restrita</span>
+    </div>
+
+    <div class="cover-main">
+      <div class="cover-eyebrow">Dossiê de Investimento Imobiliário</div>
+      <h1 class="cover-h1">Chácara Recanto<br>do Padre Tomás</h1>
+      <div class="cover-subtitle">Cambota, Valença / RJ &nbsp;·&nbsp; 10.000 m²</div>
+
+      <div class="gold-line"></div>
+
+      <div class="cover-date">Maio / 2026</div>
+
+      <div class="cover-prepared">
+        Preparado para:&nbsp;
+        <span class="cover-prepared-input">&nbsp;</span>
+      </div>
+    </div>
+
+    <div class="cover-footer">
+      <div class="cover-footer-conf">Informações de contato</div>
+      <div class="cover-footer-contacts">
+        <div class="cover-footer-contact">
+          WhatsApp &nbsp;<a href="https://wa.me/34634294887" rel="noopener noreferrer" target="_blank">(24) 98834-5768</a>
+        </div>
+        <div class="cover-footer-contact">
+          Tel &nbsp;<a href="tel:+5524988345768">(24) 98834-5768</a>
+        </div>
+        <div class="cover-footer-contact" style="color: var(--muted);">
+          Estrada Valença–Rio das Flores, 3323 · Cambota · Valença/RJ
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="page-gap"></div>
+
+<!-- ================================================ -->
+<!-- PÁGINA 2: RESUMO EXECUTIVO -->
+<!-- ================================================ -->
+<div class="page page-light">
+  <div class="watermark" style="color: rgba(168,137,62,0.04);">Confidencial</div>
+
+  <div class="page-header">
+    <span class="page-header-property">Chácara Recanto do Padre Tomás · Valença/RJ</span>
+    <span class="page-header-num">2 / 8</span>
+  </div>
+
+  <div class="content">
+    <div class="section-label">Resumo Executivo</div>
+    <h2 style="font-family:'Playfair Display',serif; font-size:18pt; font-weight:700; color:#1A1A18; margin-bottom:2mm;">Quatro usos. Uma oportunidade.</h2>
+    <div class="gold-line"></div>
+
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">&#127961;</div>
+        <div class="card-title">Incorporação Imobiliária</div>
+        <div class="card-value">~R$ 35M VGV</div>
+        <div class="card-desc">ZR3 · 4 pavimentos · ~175 unidades · permuta disponível. MCMV Faixa 2-3, financiamento CEF.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#9728;</div>
+        <div class="card-title">Energia Solar</div>
+        <div class="card-value">~720 kWp</div>
+        <div class="card-desc">~R$ 59k/mês estimados ao projeto · Light como distribuidora · arrendamento 15–25 anos.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#128225;</div>
+        <div class="card-title">Telecomunicações</div>
+        <div class="card-value">R$ 6.000/mês</div>
+        <div class="card-desc">Torre de telecom · CUC Anatel · contrato de superfície registrado · 15 anos.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#127807;</div>
+        <div class="card-title">Agronegócio</div>
+        <div class="card-desc">Arrendamento com receita recorrente. Disponibilidade hídrica. Acesso direto pela estrada.</div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <p>Ativo único no sul fluminense — quatro usos possíveis, documentação em dia, proprietária disponível para negociação direta. Terreno urbano com infraestrutura implantada, a ~8 km do centro de Valença e a 140 km do Rio de Janeiro.</p>
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="section-label">Dados de referência rápida</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Atributo</th>
+          <th>Dados</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Área total</td>
+          <td>10.000 m² (aproveitável: ~8.000 m²)</td>
+        </tr>
+        <tr>
+          <td>Zoneamento</td>
+          <td>ZR3 — Zona Residencial 3</td>
+        </tr>
+        <tr>
+          <td>Gabarito</td>
+          <td>4 pavimentos · CA 1,5 · TO 50% · Permeabilidade 30%</td>
+        </tr>
+        <tr>
+          <td>Distância ao Rio de Janeiro</td>
+          <td>~140 km (BR-393 / BR-116)</td>
+        </tr>
+        <tr>
+          <td>Distância ao centro de Valença</td>
+          <td>~8 km pela Estrada Valença–Rio das Flores</td>
+        </tr>
+        <tr>
+          <td>Status legal</td>
+          <td>Matrícula atualizada · IPTU quitado · sem ônus</td>
+        </tr>
+        <tr>
+          <td>Natureza</td>
+          <td>Terreno urbano</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="page-footer">
+    <p>Dossiê confidencial &nbsp;·&nbsp; Distribuição restrita &nbsp;·&nbsp; Valores estimados não constituem oferta ou compromisso financeiro &nbsp;·&nbsp; mai/2026</p>
+  </div>
+</div>
+
+<div class="page-gap"></div>
+
+<!-- ================================================ -->
+<!-- PÁGINA 3: O ATIVO -->
+<!-- ================================================ -->
+<div class="page page-light">
+  <div class="watermark" style="color: rgba(168,137,62,0.04);">Confidencial</div>
+
+  <div class="page-header">
+    <span class="page-header-property">Chácara Recanto do Padre Tomás · Valença/RJ</span>
+    <span class="page-header-num">3 / 8</span>
+  </div>
+
+  <div class="content">
+    <div class="section-label">O Ativo</div>
+    <h2 style="font-family:'Playfair Display',serif; font-size:18pt; font-weight:700; color:#1A1A18; margin-bottom:2mm;">Propriedade e Infraestrutura</h2>
+    <div class="gold-line"></div>
+
+    <p class="body-text">A Chácara Recanto do Padre Tomás é uma propriedade de 10.000 m² localizada no Bairro Cambota, município de Valença/RJ, com frente para a Estrada Valença–Rio das Flores no nº 3323, CEP 27.660-000. A propriedade está inserida em área urbana consolidada, com infraestrutura de acesso pavimentado e serviços municipais disponíveis.</p>
+
+    <p class="body-text">A chácara conta com infraestrutura de lazer e uso já implantada, que agrega valor imediato ao ativo: a sede construída oferece estrutura habitacional de referência para qualquer empreendimento; a piscina e a sauna configuram infraestrutura de uso coletivo pronta; o churrasqueira e as áreas de convivência completam o conjunto de lazer. O campo de futebol em grama natural ocupa área plana de destaque, com potencial de reconfiguração para projetos de incorporação ou uso técnico. O lago natural da propriedade representa um diferencial hídrico raro em áreas urbanas — relevante tanto para uso paisagístico em incorporação quanto para disponibilidade hídrica em projetos agropecuários.</p>
+
+    <p class="body-text">A topografia apresenta desnível entre 10 e 15 metros, com relevo acidentado e curvas de nível visíveis. Esse perfil topográfico, longe de ser uma restrição, é um ativo estratégico: em projetos de incorporação, o desnível natural garante privacidade entre unidades e isolamento acústico sem custo adicional de projeto; para telecom, o posicionamento elevado favorece a linha de visada e reduz interferências; para solar, o desnível recomenda avaliação de tracker na vistoria técnica.</p>
+
+    <div class="two-col" style="margin-top:4mm;">
+      <div>
+        <div class="photo-placeholder">
+          <div class="photo-placeholder-icon">&#128247;</div>
+          <div class="photo-placeholder-label">Vista aérea — implantação geral</div>
+          <div class="photo-placeholder-hint">Inserir foto drone da propriedade completa</div>
+        </div>
+      </div>
+      <div>
+        <div class="photo-placeholder">
+          <div class="photo-placeholder-icon">&#128247;</div>
+          <div class="photo-placeholder-label">Sede e área de lazer</div>
+          <div class="photo-placeholder-hint">Inserir foto da sede construída e piscina</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:3mm;">
+      <div class="photo-placeholder" style="min-height:20mm;">
+        <div class="photo-placeholder-icon">&#128247;</div>
+        <div class="photo-placeholder-label">Campo de futebol e lago</div>
+        <div class="photo-placeholder-hint">Inserir foto do campo e do lago natural da propriedade</div>
+      </div>
+    </div>
+
+    <div class="note-box" style="margin-top:4mm;">
+      <p><strong>Documentação:</strong> Matrícula atualizada, planta e documentação completa disponíveis para consulta presencial. Situação legal: sem ônus, IPTU quitado, terreno urbano regularizado.</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <p>Dossiê confidencial &nbsp;·&nbsp; Distribuição restrita &nbsp;·&nbsp; Valores estimados não constituem oferta ou compromisso financeiro &nbsp;·&nbsp; mai/2026</p>
+  </div>
+</div>
+
+<div class="page-gap"></div>
+
+<!-- ================================================ -->
+<!-- PÁGINA 4: INCORPORAÇÃO IMOBILIÁRIA -->
+<!-- ================================================ -->
+<div class="page page-light">
+  <div class="watermark" style="color: rgba(168,137,62,0.04);">Confidencial</div>
+
+  <div class="page-header">
+    <span class="page-header-property">Chácara Recanto do Padre Tomás · Valença/RJ</span>
+    <span class="page-header-num">4 / 8</span>
+  </div>
+
+  <div class="content">
+    <div class="section-label">Vetor 1 · Incorporação Imobiliária</div>
+    <h2 style="font-family:'Playfair Display',serif; font-size:18pt; font-weight:700; color:#1A1A18; margin-bottom:2mm;">VGV Estimado ~R$ 35 Milhões</h2>
+    <div class="gold-line"></div>
+
+    <div class="section-label" style="margin-top:3mm;">Ficha Técnica — Zoneamento ZR3</div>
+    <div class="ficha-grid">
+      <div class="ficha-item">
+        <div class="ficha-label">Área total</div>
+        <div class="ficha-value">10.000 m²</div>
+      </div>
+      <div class="ficha-item">
+        <div class="ficha-label">Área aproveitável</div>
+        <div class="ficha-value">~8.000 m²</div>
+      </div>
+      <div class="ficha-item">
+        <div class="ficha-label">Gabarito</div>
+        <div class="ficha-value">4 pavimentos</div>
+      </div>
+      <div class="ficha-item">
+        <div class="ficha-label">Coeficiente de Aproveitamento</div>
+        <div class="ficha-value">CA 1,5</div>
+      </div>
+      <div class="ficha-item">
+        <div class="ficha-label">Taxa de Ocupação</div>
+        <div class="ficha-value">TO 50%</div>
+      </div>
+      <div class="ficha-item">
+        <div class="ficha-label">Permeabilidade mínima</div>
+        <div class="ficha-value">30%</div>
+      </div>
+      <div class="ficha-item">
+        <div class="ficha-label">Área construível (CA)</div>
+        <div class="ficha-value">~12.000 m²</div>
+      </div>
+      <div class="ficha-item">
+        <div class="ficha-label">Unidades estimadas</div>
+        <div class="ficha-value">~175 un.</div>
+      </div>
+      <div class="ficha-item">
+        <div class="ficha-label">Área média/unidade</div>
+        <div class="ficha-value">44 m²</div>
+      </div>
+    </div>
+
+    <table style="margin-top:3mm;">
+      <thead>
+        <tr>
+          <th>Métrica de VGV</th>
+          <th>Base de cálculo</th>
+          <th>Estimativa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Preço de referência</td>
+          <td>R$ 4.200/m² (MCMV Faixa 2-3)</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>VGV bruto estimado</td>
+          <td>~175 un. × 44 m² × R$ 4.200</td>
+          <td>~R$ 32–35M</td>
+        </tr>
+        <tr>
+          <td>Margem de referência</td>
+          <td>20% VGV (setor MCMV)</td>
+          <td>~R$ 7M</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="two-col" style="margin-top:4mm;">
+      <div>
+        <div class="section-label">Modelo de Permuta</div>
+        <p class="body-text">A permuta é o modelo padrão de aquisição em incorporações MCMV: a incorporadora não desembolsa caixa na compra do terreno — entrega unidades prontas ao proprietário em contrapartida à área. O percentual de permuta varia tipicamente entre 12% e 18% do VGV, equivalendo a R$ 4–6M em unidades neste ativo. Isso elimina o risco de caixa inicial para a incorporadora e viabiliza negociação direta com a proprietária.</p>
+      </div>
+      <div>
+        <div class="section-label">Mercado Valença/RJ</div>
+        <p class="body-text">Valença conta com aproximadamente 80 mil habitantes e apresenta déficit habitacional documentado, com pouca oferta de lançamentos verticais recentes. O município é atendido pelo programa MCMV Faixa 2 e 3, com financiamento via Caixa Econômica Federal — a demanda qualificada por financiamento imobiliário supera significativamente a oferta local de unidades novas, configurando janela de mercado favorável ao primeiro incorporador a atuar na escala que este terreno permite.</p>
+      </div>
+    </div>
+
+    <div class="next-step">
+      <div class="next-step-label">Próximo passo</div>
+      <p>Visita técnica ao terreno + estudo de viabilidade preliminar em 10 dias úteis após contato. Matrícula e planta disponíveis presencialmente.</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <p>Dossiê confidencial &nbsp;·&nbsp; Distribuição restrita &nbsp;·&nbsp; Valores estimados não constituem oferta ou compromisso financeiro &nbsp;·&nbsp; mai/2026</p>
+  </div>
+</div>
+
+<div class="page-gap"></div>
+
+<!-- ================================================ -->
+<!-- PÁGINA 5: ENERGIA SOLAR -->
+<!-- ================================================ -->
+<div class="page page-light">
+  <div class="watermark" style="color: rgba(168,137,62,0.04);">Confidencial</div>
+
+  <div class="page-header">
+    <span class="page-header-property">Chácara Recanto do Padre Tomás · Valença/RJ</span>
+    <span class="page-header-num">5 / 8</span>
+  </div>
+
+  <div class="content">
+    <div class="section-label">Vetor 2 · Energia Solar</div>
+    <h2 style="font-family:'Playfair Display',serif; font-size:18pt; font-weight:700; color:#1A1A18; margin-bottom:2mm;">~720 kWp · ~R$ 59k/mês estimados</h2>
+    <div class="gold-line"></div>
+
+    <div class="ficha-grid" style="margin-top:4mm;">
+      <div class="ficha-item">
+        <div class="ficha-label">Área disponível contínua</div>
+        <div class="ficha-value">~0,8 ha</div>
+      </div>
+      <div class="ficha-item">
+        <div class="ficha-label">Capacidade instalável</div>
+        <div class="ficha-value">~720 kWp</div>
+      </div>
+      <div class="ficha-item">
+        <div class="ficha-label">Geração estimada/ano</div>
+        <div class="ficha-value">~1.000 MWh</div>
+      </div>
+      <div class="ficha-item">
+        <div class="ficha-label">Receita bruta estimada</div>
+        <div class="ficha-value">~R$ 59k/mês</div>
+      </div>
+      <div class="ficha-item">
+        <div class="ficha-label">Base de cálculo</div>
+        <div class="ficha-value">720 kWp × 1.400 h/ano × R$ 0,70/kWh ÷ 12</div>
+      </div>
+      <div class="ficha-item">
+        <div class="ficha-label">Distribuidora</div>
+        <div class="ficha-value">Light S.A.</div>
+      </div>
+    </div>
+
+    <table style="margin-top:4mm;">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Área de concessão (Light)</td>
+          <td>Confirmada — Valença/RJ na área de concessão Light</td>
+        </tr>
+        <tr>
+          <td>Rede MT (média tensão)</td>
+          <td>A confirmar in loco — critério essencial para vistoria técnica</td>
+        </tr>
+        <tr>
+          <td>Topografia</td>
+          <td>Desnível 10–15 m — estudo de tracker recomendado</td>
+        </tr>
+        <tr>
+          <td>Modelo de contrato</td>
+          <td>Arrendamento 15–25 anos com reajuste IPCA</td>
+        </tr>
+        <tr>
+          <td>Coordenadas e altitude</td>
+          <td>Disponíveis presencialmente</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="highlight-box" style="margin-top:4mm;">
+      <p>A topografia acidentada (desnível 10–15 m) exige estudo específico de inclinação de painéis e, possivelmente, sistema de tracker para maximizar geração. Esse dado não inviabiliza o projeto — recomenda avaliação na vistoria técnica. A altitude elevada favorece maior irradiação e menor sombreamento por estruturas vizinhas.</p>
+    </div>
+
+    <div class="two-col" style="margin-top:3mm;">
+      <div>
+        <div class="section-label">Modelo de negócio</div>
+        <p class="body-text">O arrendamento para geração solar é um modelo consolidado: o investidor instala o parque a seu custo, paga ao proprietário uma renda mensal pelo uso da área, e vende energia injetada na rede. O contrato, geralmente de 15 a 25 anos com reajuste IPCA, é registrado em cartório como direito real de superfície.</p>
+      </div>
+      <div>
+        <div class="section-label">Risco e diligência</div>
+        <p class="body-text">O principal ponto de diligência é a proximidade e capacidade da rede de média tensão da Light. Coordenadas GPS e dados de altitude da propriedade estão disponíveis para análise prévia pelo engenheiro elétrico do potencial arrendatário, e podem ser fornecidos presencialmente na visita de campo.</p>
+      </div>
+    </div>
+
+    <div class="next-step">
+      <div class="next-step-label">Próximo passo</div>
+      <p>Solicite visita técnica — coordenadas GPS e dados de altitude disponíveis presencialmente para análise de irradiação e levantamento de rede MT.</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <p>Dossiê confidencial &nbsp;·&nbsp; Distribuição restrita &nbsp;·&nbsp; Valores estimados não constituem oferta ou compromisso financeiro &nbsp;·&nbsp; mai/2026</p>
+  </div>
+</div>
+
+<div class="page-gap"></div>
+
+<!-- ================================================ -->
+<!-- PÁGINA 6: TELECOMUNICAÇÕES -->
+<!-- ================================================ -->
+<div class="page page-light">
+  <div class="watermark" style="color: rgba(168,137,62,0.04);">Confidencial</div>
+
+  <div class="page-header">
+    <span class="page-header-property">Chácara Recanto do Padre Tomás · Valença/RJ</span>
+    <span class="page-header-num">6 / 8</span>
+  </div>
+
+  <div class="content">
+    <div class="section-label">Vetor 3 · Telecomunicações</div>
+    <h2 style="font-family:'Playfair Display',serif; font-size:18pt; font-weight:700; color:#1A1A18; margin-bottom:2mm;">R$ 6.000/mês · Contrato 15 anos</h2>
+    <div class="gold-line"></div>
+
+    <div class="ficha-grid" style="margin-top:4mm;">
+      <div class="ficha-item">
+        <div class="ficha-label">Município</div>
+        <div class="ficha-value">Valença/RJ</div>
+      </div>
+      <div class="ficha-item">
+        <div class="ficha-label">Bairro</div>
+        <div class="ficha-value">Cambota</div>
+      </div>
+      <div class="ficha-item">
+        <div class="ficha-label">Área disponível</div>
+        <div class="ficha-value">~180 m²</div>
+      </div>
+      <div class="ficha-item">
+        <div class="ficha-label">Acesso</div>
+        <div class="ficha-value">Estrada pavimentada</div>
+      </div>
+      <div class="ficha-item">
+        <div class="ficha-label">Torre existente</div>
+        <div class="ficha-value">Não há</div>
+      </div>
+      <div class="ficha-item">
+        <div class="ficha-label">Modelo</div>
+        <div class="ficha-value">CUC / Anatel</div>
+      </div>
+    </div>
+
+    <table style="margin-top:4mm;">
+      <thead>
+        <tr>
+          <th>Projeção financeira</th>
+          <th>Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Renda estimada mensal</td>
+          <td>R$ 6.000 · 1 operadora</td>
+        </tr>
+        <tr>
+          <td>Prazo contratual</td>
+          <td>15 anos</td>
+        </tr>
+        <tr>
+          <td>Acumulado 15 anos (sem IPCA)</td>
+          <td>R$ 1.080.000</td>
+        </tr>
+        <tr>
+          <td>Acumulado 15 anos (IPCA 4% a.a.)</td>
+          <td>~R$ 1.500.000</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="two-col" style="margin-top:4mm;">
+      <div>
+        <div class="section-label">Modelo contratual</div>
+        <p class="body-text">O contrato de uso de cobertura (CUC) é compatível com as normas Anatel para instalação de ERBs (estações rádio base). O instrumento é registrado em cartório como contrato de superfície, garantindo segurança jurídica ao proprietário e ao operador de telecom. O proprietário não assume nenhum custo de instalação ou manutenção da estrutura.</p>
+      </div>
+      <div>
+        <div class="section-label">Topografia como diferencial</div>
+        <p class="body-text">O desnível de 10–15 m da propriedade posiciona o topo do terreno acima do nível médio da região, o que reduz a altura necessária de torre para atingir a linha de visada exigida pelas operadoras. Isso diminui o custo de instalação e torna o sítio mais competitivo no processo de seleção de RF das operadoras.</p>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <p><strong>Nota técnica:</strong> Coordenadas GPS e altitude precisas da propriedade estão disponíveis presencialmente para análise de RF (radiofrequência) pelo engenheiro da operadora ou da torre company interessada. A análise de RF é o primeiro passo técnico no processo de qualificação do sítio.</p>
+    </div>
+
+    <div class="next-step">
+      <div class="next-step-label">Próximo passo</div>
+      <p>Visita de campo — engenheiro de RF analisa viabilidade com coordenadas reais e dados de altitude. Processo de qualificação típico: 30–60 dias após visita.</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <p>Dossiê confidencial &nbsp;·&nbsp; Distribuição restrita &nbsp;·&nbsp; Valores estimados não constituem oferta ou compromisso financeiro &nbsp;·&nbsp; mai/2026</p>
+  </div>
+</div>
+
+<div class="page-gap"></div>
+
+<!-- ================================================ -->
+<!-- PÁGINA 7: AGRONEGÓCIO -->
+<!-- ================================================ -->
+<div class="page page-light">
+  <div class="watermark" style="color: rgba(168,137,62,0.04);">Confidencial</div>
+
+  <div class="page-header">
+    <span class="page-header-property">Chácara Recanto do Padre Tomás · Valença/RJ</span>
+    <span class="page-header-num">7 / 8</span>
+  </div>
+
+  <div class="content">
+    <div class="section-label">Vetor 4 · Agronegócio</div>
+    <h2 style="font-family:'Playfair Display',serif; font-size:18pt; font-weight:700; color:#1A1A18; margin-bottom:2mm;">Arrendamento com Receita Recorrente</h2>
+    <div class="gold-line"></div>
+
+    <div class="ficha-grid" style="margin-top:4mm;">
+      <div class="ficha-item">
+        <div class="ficha-label">Área para galpões</div>
+        <div class="ficha-value">~6.000 m²</div>
+      </div>
+      <div class="ficha-item">
+        <div class="ficha-label">Disponibilidade hídrica</div>
+        <div class="ficha-value">Lago natural</div>
+      </div>
+      <div class="ficha-item">
+        <div class="ficha-label">Acesso</div>
+        <div class="ficha-value">Direto pela estrada</div>
+      </div>
+      <div class="ficha-item">
+        <div class="ficha-label">Renda estimada</div>
+        <div class="ficha-value">R$ 2.000–4.000/mês</div>
+      </div>
+      <div class="ficha-item">
+        <div class="ficha-label">Galpões estimados</div>
+        <div class="ficha-value">1–2 galpões padrão</div>
+      </div>
+      <div class="ficha-item">
+        <div class="ficha-label">Distância ao Rio</div>
+        <div class="ficha-value">~140 km</div>
+      </div>
+    </div>
+
+    <div class="highlight-box" style="margin-top:4mm;">
+      <p>O lago natural da propriedade é um diferencial de alto valor para operações de avicultura, piscicultura ou irrigação intensiva — usos que normalmente exigem investimentos significativos em captação hídrica. A disponibilidade hídrica in loco elimina esse custo para o arrendatário.</p>
+    </div>
+
+    <div class="two-col" style="margin-top:3mm;">
+      <div>
+        <div class="section-label">Modelo de negócio</div>
+        <p class="body-text">O arrendamento rural é o modelo típico de operações integradas de agronegócio no Brasil. O integrador (empresa de avicultura, suinocultura ou piscicultura) instala os galpões a seu custo, paga renda mensal ao proprietário e conduz a operação sob seu risco. O contrato, registrado em cartório, garante receita passiva e previsível ao proprietário da terra.</p>
+      </div>
+      <div>
+        <div class="section-label">Contexto regional</div>
+        <p class="body-text">Valença e o sul fluminense integram corredores logísticos consolidados para distribuição ao Rio de Janeiro, a ~140 km. A distância da propriedade ao acesso principal pela Estrada Valença–Rio das Flores oferece logística direta sem dependência de vias urbanas congestionadas, fator valorizado por integradores de médio porte.</p>
+      </div>
+    </div>
+
+    <div class="note-box" style="margin-top:3mm; border-left: 2pt solid #e8a020; background: rgba(232,160,32,0.06);">
+      <p style="color: #7a4800;"><strong>Atenção — Zoneamento:</strong> A propriedade está classificada como ZR3 (Zona Residencial 3), de natureza urbana. A viabilidade de operações agroindustriais deve ser confirmada junto à Prefeitura de Valença e ao integrador interessado na visita técnica. Este vetor é complementar e não substitui a análise de conformidade urbanística.</p>
+    </div>
+
+    <div class="next-step">
+      <div class="next-step-label">Próximo passo</div>
+      <p>Visita para análise hídrica, topografia do lago e orientação de galpões. Confirmação de viabilidade com a Prefeitura de Valença mediante apresentação de projeto de uso.</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <p>Dossiê confidencial &nbsp;·&nbsp; Distribuição restrita &nbsp;·&nbsp; Valores estimados não constituem oferta ou compromisso financeiro &nbsp;·&nbsp; mai/2026</p>
+  </div>
+</div>
+
+<div class="page-gap"></div>
+
+<!-- ================================================ -->
+<!-- PÁGINA 8: PRÓXIMOS PASSOS / CTA -->
+<!-- ================================================ -->
+<div class="page page-dark" style="display:flex; flex-direction:column;">
+  <div class="watermark">Confidencial</div>
+
+  <div class="page-header">
+    <span class="page-header-property">Chácara Recanto do Padre Tomás · Valença/RJ</span>
+    <span class="page-header-num">8 / 8</span>
+  </div>
+
+  <div class="cta-main">
+
+    <div style="text-align:center; margin-bottom:2mm;">
+      <span style="font-size:6.5pt; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold);">Próximos Passos</span>
+    </div>
+
+    <h2 class="cta-h1">A próxima etapa é simples.</h2>
+    <p class="cta-subtitle">Uma visita de meio dia é suficiente para fechar sua análise de viabilidade.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-title" style="color:var(--white);">Contato</div>
+        <div class="step-desc" style="color:var(--muted);">Entre em contato via WhatsApp ou telefone. Apresentamos o ativo e agendamos a visita sem compromisso.</div>
+      </div>
+      <div class="step-arrow">&#10230;</div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-title" style="color:var(--white);">Visita técnica</div>
+        <div class="step-desc" style="color:var(--muted);">Visita ao terreno com a proprietária. Documentação, planta e coordenadas disponíveis presencialmente. Sem compromisso.</div>
+      </div>
+      <div class="step-arrow">&#10230;</div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-title" style="color:var(--white);">Proposta</div>
+        <div class="step-desc" style="color:var(--muted);">Apresentação de proposta com base na visita. Proprietária disponível para negociação direta e flexível quanto ao modelo.</div>
+      </div>
+    </div>
+
+    <div style="border-top: 0.5pt solid rgba(200,169,110,0.2); padding-top:6mm; margin-top:4mm;">
+      <div style="text-align:center; margin-bottom:4mm;">
+        <span style="font-size:7pt; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted);">Documentação disponível na visita</span>
+        <p style="font-size:8pt; color:#777; margin-top:1mm; font-style:italic;">Matrícula atualizada · Planta da propriedade · Histórico de IPTU quitado · Documentação completa</p>
+      </div>
+
+      <div class="contact-block">
+        <div class="contact-item">
+          <a href="https://wa.me/34634294887" rel="noopener noreferrer" target="_blank">
+            <div class="contact-label">WhatsApp</div>
+            <div class="contact-value" style="color:var(--gold);">(24) 98834-5768</div>
+          </a>
+        </div>
+        <div class="contact-item">
+          <a href="tel:+5524988345768">
+            <div class="contact-label">Telefone</div>
+            <div class="contact-value" style="color:var(--white);">(24) 98834-5768</div>
+          </a>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top:4mm;">
+        <p style="font-size:7.5pt; color:#555;">Estrada Valença–Rio das Flores, Nº 3323 · Cambota · Valença/RJ · CEP 27.660-000</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer" style="position:relative; margin-top:auto;">
+    <p style="color:#3a3a36;">Dossiê confidencial &nbsp;·&nbsp; Distribuição restrita &nbsp;·&nbsp; Os valores, estimativas e projeções contidos neste documento são meramente indicativos, elaborados com base em premissas de mercado, e não constituem oferta, compromisso financeiro, garantia de rentabilidade ou assessoria de investimento de qualquer natureza. O investidor deve realizar sua própria diligência. &nbsp;·&nbsp; mai/2026</p>
+  </div>
+
+</div>
+
+</body>
+</html>
