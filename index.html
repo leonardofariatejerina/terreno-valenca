@@ -22,15 +22,15 @@
 
   <style>
     :root {
-      --bg:         #1A1A18;
-      --bg-card:    #202020;
-      --bg-light:   #272725;
+      --bg:         #F8F5EF;
+      --bg-card:    #F0EDE6;
+      --bg-light:   #E8E5DE;
       --bg-nav:     rgba(20,20,18,0.94);
       --gold:       #C8A96E;
       --gold-hover: #D9BC82;
-      --white:      #F5F2EC;
-      --muted:      #ABA69E;
-      --border:     rgba(200,169,110,0.15);
+      --white:      #1A1A18;
+      --muted:      #6B6760;
+      --border:     rgba(26,26,24,0.13);
       --radius:     5px;
       --font-h:     'Playfair Display', Georgia, serif;
       --font-b:     'DM Sans', system-ui, sans-serif;
@@ -420,6 +420,35 @@
       font-size:.72rem; letter-spacing:2.5px; text-transform:uppercase;
       color:var(--gold); margin-bottom:22px;
     }
+
+    /* ===== Hero — fundo escuro preservado ===== */
+    .hero { background:#1A1A18; }
+    .hero .h1   { color:#F5F2EC; }
+    .hero .lead { color:#ABA69E; }
+    .hero .stat-val { color:var(--gold); }
+    .hero .stat-lbl { color:#ABA69E; }
+    .hero__badge { color:var(--gold); border-color:rgba(200,169,110,.15); background:rgba(200,169,110,.1); }
+    .hero .btn-ghost { color:var(--gold); border-color:var(--gold); }
+    .hero .btn-ghost:hover { background:rgba(200,169,110,.1); }
+
+    /* ===== Nav — texto claro sobre fundo escuro ===== */
+    .nav-logo { color:#F5F2EC; }
+    .nav-links a { color:rgba(245,242,236,.65); }
+    .nav-links a:hover { color:var(--gold); }
+    .nav-mobile a { color:rgba(245,242,236,.75); border-bottom-color:rgba(200,169,110,.12); }
+    .nav-mobile a:last-child { color:var(--gold); }
+
+    /* ===== Footer — fundo escuro preservado ===== */
+    footer { background:#1A1A18; border-top-color:rgba(200,169,110,.15); }
+    footer .foot-brand { color:#F5F2EC; }
+    footer .foot-desc  { color:#ABA69E; }
+    footer .foot-title { color:var(--gold); }
+    footer .foot-list li, footer .foot-list a { color:#ABA69E; }
+    footer .foot-list a:hover { color:var(--gold); }
+    footer .foot-btm { color:#55524E; border-top-color:rgba(200,169,110,.12); }
+
+    /* ===== WhatsApp float ===== */
+    .wa-float-label { background:#F0EDE6; color:#1A1A18; border-color:rgba(26,26,24,.15); }
 
     @media(max-width:768px){
       :root { --py:60px; }
