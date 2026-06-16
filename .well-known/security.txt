@@ -1,0 +1,4 @@
+Contact: https://terrenovalenca.com.br/#formulario
+Contact: tel:+5524988345768
+Preferred-Languages: pt-br, en
+Canonical: https://terrenovalenca.com.br/.well-known/security.txt

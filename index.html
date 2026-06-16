@@ -9,6 +9,12 @@
   <link rel="canonical" href="https://terrenovalenca.com.br/" />
   <link rel="alternate" hreflang="pt-BR" href="https://terrenovalenca.com.br/" />
   <link rel="alternate" hreflang="x-default" href="https://terrenovalenca.com.br/" />
+  <meta name="theme-color" content="#1A1A18" />
+  <meta name="color-scheme" content="light" />
+  <meta name="geo.region" content="BR-RJ" />
+  <meta name="geo.placename" content="Valença, Rio de Janeiro" />
+  <meta name="geo.position" content="-22.2453;-43.7003" />
+  <meta name="ICBM" content="-22.2453, -43.7003" />
 
   <!-- Open Graph — preview ao compartilhar no WhatsApp / LinkedIn -->
   <meta property="og:type"        content="website" />
@@ -534,6 +540,11 @@
     }
     .f-grp input:focus, .f-grp select:focus, .f-grp textarea:focus {
       outline:none; border-color:var(--gold);
+    }
+    .f-grp input[aria-invalid="true"],
+    .f-grp select[aria-invalid="true"] {
+      border-color: #E07070;
+      background: rgba(224,112,112,.04);
     }
     .f-grp select option { background:var(--bg); }
     .f-grp textarea      { resize:vertical; min-height:90px; }
@@ -1460,21 +1471,26 @@
       </div>
 
       <div class="fi" style="transition-delay:.13s">
-        <form id="cform" novalidate>
+        <form id="cform" novalidate aria-label="Formulário de contato — solicitar dossiê técnico">
 
           <div class="f-grp required">
             <label for="nome">Nome</label>
-            <input type="text" id="nome" name="nome" required placeholder="Seu nome" autocomplete="name" />
+            <input type="text" id="nome" name="nome" required
+                   placeholder="Seu nome" autocomplete="name"
+                   aria-required="true" aria-describedby="f-err" />
           </div>
 
           <div class="f-grp required">
             <label for="tel">Seu WhatsApp</label>
-            <input type="tel" id="tel" name="whatsapp" required placeholder="(XX) XXXXX-XXXX" autocomplete="tel" />
+            <input type="tel" id="tel" name="whatsapp" required
+                   placeholder="(XX) XXXXX-XXXX" autocomplete="tel"
+                   aria-required="true" aria-describedby="f-err" />
           </div>
 
           <div class="f-grp required">
             <label for="int">Interesse</label>
-            <select id="int" name="interesse" required>
+            <select id="int" name="interesse" required
+                    aria-required="true" aria-describedby="f-err">
               <option value="">Selecione...</option>
               <option>Incorporação Imobiliária</option>
               <option>Energia Solar</option>
@@ -1489,9 +1505,9 @@
             Enviar pelo WhatsApp
           </button>
 
-          <div class="f-error" id="f-err">Preencha todos os campos antes de enviar.</div>
+          <div class="f-error" id="f-err" role="alert" aria-live="assertive">Preencha todos os campos antes de enviar.</div>
 
-          <div id="form-ok">
+          <div id="form-ok" role="status" aria-live="polite">
             ✓ &nbsp; WhatsApp aberto com sua mensagem. Até breve!
           </div>
 
@@ -1529,6 +1545,7 @@
           <li><a href="#telecom">Telecomunicações</a></li>
           <li><a href="#agro">Agronegócio</a></li>
           <li><a href="#formulario">Contato</a></li>
+          <li><a href="/faq.html">Perguntas Frequentes</a></li>
         </ul>
       </div>
     </div>
@@ -1538,6 +1555,7 @@
         <ul class="foot-list" style="flex-direction:row; flex-wrap:wrap; gap:12px 24px;">
           <li><a href="/incorporacao-valenca-rj.html">Incorporação em Valença RJ</a></li>
           <li><a href="/area-torre-telecom-rj.html">Área para Torre Telecom RJ</a></li>
+          <li><a href="/faq.html">Perguntas Frequentes</a></li>
           <li><a href="/dossie.html">Dossiê técnico completo</a></li>
           <li><a href="/sitemap.html">Mapa do site</a></li>
         </ul>
@@ -1669,13 +1687,24 @@ calcAgro(2);
 
 document.getElementById('cform').addEventListener('submit', function(e) {
   e.preventDefault();
-  const nome      = document.getElementById('nome').value.trim();
-  const tel       = document.getElementById('tel').value.trim();
-  const interesse = document.getElementById('int').value;
-  const err       = document.getElementById('f-err');
+  const nomeEl = document.getElementById('nome');
+  const telEl  = document.getElementById('tel');
+  const intEl  = document.getElementById('int');
+  const err    = document.getElementById('f-err');
+
+  const nome      = nomeEl.value.trim();
+  const tel       = telEl.value.trim();
+  const interesse = intEl.value;
+
+  nomeEl.setAttribute('aria-invalid', nome ? 'false' : 'true');
+  telEl.setAttribute('aria-invalid',  tel  ? 'false' : 'true');
+  intEl.setAttribute('aria-invalid',  interesse ? 'false' : 'true');
 
   if (!nome || !tel || !interesse) {
-    err.style.display = 'block'; return;
+    err.style.display = 'block';
+    const firstInvalid = [nomeEl, telEl, intEl].find(el => !el.value.trim());
+    if (firstInvalid) firstInvalid.focus();
+    return;
   }
   err.style.display = 'none';
 

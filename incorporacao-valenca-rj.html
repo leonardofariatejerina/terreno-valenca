@@ -9,6 +9,12 @@
   <link rel="canonical" href="https://terrenovalenca.com.br/incorporacao-valenca-rj.html" />
   <link rel="alternate" hreflang="pt-BR" href="https://terrenovalenca.com.br/incorporacao-valenca-rj.html" />
   <link rel="alternate" hreflang="x-default" href="https://terrenovalenca.com.br/" />
+  <meta name="theme-color" content="#1A1A18" />
+  <meta name="color-scheme" content="light" />
+  <meta name="geo.region" content="BR-RJ" />
+  <meta name="geo.placename" content="Valença, Rio de Janeiro" />
+  <meta name="geo.position" content="-22.2453;-43.7003" />
+  <meta name="ICBM" content="-22.2453, -43.7003" />
   <meta property="og:type"        content="article" />
   <meta property="og:title"       content="Terreno para Incorporação em Valença RJ — 10.000 m² ZR3 · Permuta" />
   <meta property="og:description" content="Lote ZR3, CA 1,5, até 15.000 m² construídos. VGV ~R$35M. Permuta física sem desembolso de caixa. MCMV Faixas 2 e 3. 140 km do Rio." />
@@ -161,11 +167,15 @@
       background:#1A1A18; padding:72px 0 64px;
       position:relative; overflow:hidden;
     }
-    .page-hero::before {
-      content:''; position:absolute; inset:0;
-      background:linear-gradient(130deg,rgba(16,16,14,.9),rgba(16,16,14,.7)),url('hero.jpeg') center/cover no-repeat;
+    .page-hero__bg {
+      position:absolute; inset:0; width:100%; height:100%;
+      object-fit:cover; object-position:center; z-index:0;
     }
-    .page-hero__inner { position:relative; z-index:1; }
+    .page-hero__overlay {
+      position:absolute; inset:0; z-index:1;
+      background:linear-gradient(130deg,rgba(16,16,14,.9) 0%,rgba(16,16,14,.7) 100%);
+    }
+    .page-hero__inner { position:relative; z-index:2; }
     .page-hero .h1, .page-hero .lead { color:#F5F2EC; }
     .page-hero .lead { color:#ABA69E; }
     .page-hero .eyebrow { color:var(--gold); }
@@ -254,6 +264,8 @@
 </nav>
 
 <section class="page-hero">
+  <img src="hero.jpeg" alt="Vista do terreno de 10.000 m² em Valença/RJ — Chácara Recanto do Padre Tomás, Cambota" class="page-hero__bg" width="1200" height="800" fetchpriority="high" decoding="async" />
+  <div class="page-hero__overlay" aria-hidden="true"></div>
   <div class="wrap">
     <div class="page-hero__inner">
       <span class="eyebrow">Incorporação Imobiliária · Valença RJ</span>
