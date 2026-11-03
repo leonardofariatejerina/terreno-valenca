@@ -44,8 +44,8 @@
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": "-22.2453",
-        "longitude": "-43.7003"
+        "latitude": "-22.2211",
+        "longitude": "-43.6848"
       },
       "floorSize": {
         "@type": "QuantitativeValue",
@@ -105,7 +105,7 @@
           "name": "Qual o VGV estimado para incorporação no terreno de Valença?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "O VGV estimado para incorporação residencial é de aproximadamente R$ 35 milhões, baseado em 175 unidades de 44 m² com ticket médio de R$ 4.200/m². O terreno é elegível para MCMV Faixas 2 e 3."
+            "text": "O VGV estimado para incorporação residencial é de R$ 32 a 35 milhões, baseado em 175 unidades de 44 m² com ticket médio de R$ 4.200/m². O terreno é elegível para MCMV Faixas 2 e 3."
           }
         },
         {
@@ -475,7 +475,7 @@
     }
 
     footer { border-top:1px solid var(--border); padding:48px 0 28px; }
-    .foot-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:48px; }
+    .foot-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; }
     .foot-brand { font-family:var(--font-h); font-size:1.1rem; margin-bottom:10px; }
     .foot-desc  { font-size:.82rem; color:var(--muted); max-width:320px; line-height:1.65; }
     .foot-title { font-size:.72rem; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
@@ -606,6 +606,46 @@
 
       .urgency-inner { flex-direction:column; gap:12px; }
     }
+
+    /* ===== v2: galeria, área urbana, loteamento, compartilhar, barra mobile ===== */
+    .gallery { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; margin-top:28px; }
+    .gallery button { border:0; padding:0; cursor:zoom-in; background:var(--bg-light); border-radius:var(--radius); overflow:hidden; aspect-ratio:4/3; }
+    .gallery img { width:100%; height:100%; object-fit:cover; transition:transform .35s ease; }
+    .gallery button:hover img { transform:scale(1.05); }
+    .lb { position:fixed; inset:0; z-index:400; background:rgba(12,12,10,.94); display:none; align-items:center; justify-content:center; padding:24px; }
+    .lb.open { display:flex; }
+    .lb img { max-width:100%; max-height:84vh; border-radius:var(--radius); box-shadow:0 10px 40px rgba(0,0,0,.5); }
+    .lb-cap { position:absolute; bottom:22px; left:0; right:0; text-align:center; color:#ABA69E; font-size:.8rem; }
+    .lb-btn { position:absolute; background:rgba(200,169,110,.14); color:var(--gold); border:1px solid rgba(200,169,110,.35); width:46px; height:46px; border-radius:50%; font-size:1.3rem; cursor:pointer; }
+    .lb-close { top:18px; right:18px; } .lb-prev { left:14px; top:50%; } .lb-next { right:14px; top:50%; }
+
+    .urb-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:8px; }
+    .urb-card { background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:26px 24px; border-top:3px solid var(--gold); }
+    .urb-card .urb-num { font-family:var(--font-h); font-size:2rem; color:var(--gold); font-weight:700; line-height:1.1; }
+    .urb-card h3 { font-size:1rem; font-weight:600; margin:10px 0 8px; }
+    .urb-card p { font-size:.86rem; color:var(--muted); }
+    .urb-src { font-size:.7rem; color:var(--muted); font-style:italic; margin-top:18px; }
+
+    .share { background:#1A1A18; color:#F5F2EC; padding:56px 0; text-align:center; }
+    .share h2 { color:#F5F2EC; }
+    .share p { color:#ABA69E; max-width:560px; margin:14px auto 26px; font-size:.95rem; }
+    .share-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+    .btn-wa { background:#25D366; color:#0b2e17; }
+    .btn-wa:hover { background:#3ee07a; }
+    #copy-ok { display:none; color:var(--gold); font-size:.8rem; margin-top:12px; }
+
+    .m-bar { display:none; }
+    @media(max-width:768px){
+      .gallery { grid-template-columns:1fr 1fr; }
+      .gallery button:first-child { grid-column:span 2; aspect-ratio:16/10; }
+      .urb-grid { grid-template-columns:1fr; }
+      .m-bar { display:flex; position:fixed; left:0; right:0; bottom:0; z-index:210; gap:8px; padding:10px 12px calc(10px + env(safe-area-inset-bottom)); background:rgba(20,20,18,.96); border-top:1px solid rgba(200,169,110,.25); backdrop-filter:blur(10px); }
+      .m-bar a { flex:1; justify-content:center; padding:13px 10px; font-size:.86rem; }
+      .wa-float { display:none; }
+      body { padding-bottom:72px; }
+      #loteamento, #urbano { scroll-margin-top: 56px; }
+    }
+    #loteamento, #urbano { scroll-margin-top: 112px; }
   </style>
 </head>
 <body>
@@ -616,6 +656,7 @@
     <span class="nav-logo">Recanto do Padre Tomás</span>
     <div class="nav-links">
       <a href="#ativo">O Terreno</a>
+      <a href="#loteamento">Loteamento</a>
       <a href="#imobiliaria">Incorporação</a>
       <a href="#solar">Solar</a>
       <a href="#telecom">Telecom</a>
@@ -629,6 +670,8 @@
 </nav>
 <div class="nav-mobile" id="nav-mobile">
   <a href="#ativo"       onclick="closeMenu()">O Terreno</a>
+  <a href="#urbano"      onclick="closeMenu()">Área urbana consolidada</a>
+  <a href="#loteamento"  onclick="closeMenu()">Loteamento</a>
   <a href="#imobiliaria" onclick="closeMenu()">Incorporação</a>
   <a href="#solar"       onclick="closeMenu()">Energia Solar</a>
   <a href="#telecom"     onclick="closeMenu()">Telecomunicações</a>
@@ -666,8 +709,8 @@
           <div class="stat-lbl">do Rio de Janeiro</div>
         </div>
         <div>
-          <div class="stat-val">~R$35M VGV</div>
-          <div class="stat-lbl">estimado</div>
+          <div class="stat-val">R$32–35M</div>
+          <div class="stat-lbl">VGV estimado</div>
         </div>
       </div>
 
@@ -748,6 +791,14 @@
       </div>
 
     </div>
+
+    <div class="gallery fi" id="galeria" aria-label="Galeria de fotos">
+      <button type="button" data-i="0"><img src="hero.jpeg" alt="Vista do terreno de 10.000 m² em Cambota, Valença/RJ" loading="lazy" width="300" height="225"></button>
+      <button type="button" data-i="1"><img src="sede.jpeg" alt="Sede da Chácara Recanto do Padre Tomás, Valença/RJ" loading="lazy" width="300" height="225"></button>
+      <button type="button" data-i="2"><img src="parnoramica.jpeg" alt="Vista panorâmica da área, bairro Cambota, Valença/RJ" loading="lazy" width="300" height="225"></button>
+      <button type="button" data-i="3"><img src="campo.jpeg" alt="Campo em grama da chácara em Valença/RJ" loading="lazy" width="300" height="225"></button>
+      <button type="button" data-i="4"><img src="interior.jpeg" alt="Interior da sede da chácara à venda em Valença/RJ" loading="lazy" width="300" height="225"></button>
+    </div>
   </div>
 </section>
 
@@ -790,7 +841,7 @@
 
       <div class="fi" style="transition-delay:.12s">
         <iframe
-          src="https://www.openstreetmap.org/export/embed.html?bbox=-43.72%2C-22.24%2C-43.64%2C-22.20&layer=mapnik&marker=-22.22%2C-43.68"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-43.72%2C-22.24%2C-43.64%2C-22.20&layer=mapnik&marker=-22.2211%2C-43.6848"
           width="100%" height="380" style="border:0;border-radius:5px"
           allowfullscreen="" loading="lazy"
           sandbox="allow-scripts allow-same-origin"
@@ -806,21 +857,53 @@
 </section>
 
 
+<section class="sec" id="urbano">
+  <div class="wrap">
+    <div class="opp__hd fi">
+      <span class="eyebrow">Área urbana consolidada</span>
+      <h2 class="h2">10.000 m² livres<br/><span class="gold">dentro de um bairro já ocupado.</span></h2>
+      <div class="rule"></div>
+      <p class="lead">Cambota já tem loteamentos, conjunto habitacional, comércio e transporte. O terreno está dentro desse tecido urbano, com zoneamento residencial e acesso direto pela Estrada Valença–Rio das Flores.</p>
+    </div>
+    <div class="urb-grid">
+      <div class="urb-card fi">
+        <div class="urb-num">ZR3</div>
+        <h3>Zona de médio-alto adensamento</h3>
+        <p>Na revisão do Plano Diretor de Valença (2026), Cambota segue em ZR3, zona descrita como área consolidada com infraestrutura que suporta ocupação mais densa.</p>
+      </div>
+      <div class="urb-card fi" style="transition-delay:.08s">
+        <div class="urb-num">Bairro pronto</div>
+        <h3>Loteamentos e serviços no entorno</h3>
+        <p>Vizinhança com o Conjunto Habitacional Vadinho Fonseca e o Loteamento Santa Maria, além de escola, supermercado e ponto de ônibus no bairro.</p>
+      </div>
+      <div class="urb-card fi" style="transition-delay:.16s">
+        <div class="urb-num">R$ 120 mil</div>
+        <h3>Mercado ativo de lotes</h3>
+        <p>Lotes de cerca de 220 m² anunciados em Cambota por até R$ 120 mil. Sinal de demanda por lote urbano pronto para construir.</p>
+      </div>
+    </div>
+    <p class="urb-src">Fontes: Revisão do Plano Diretor Participativo de Valença (2026), anúncios de imobiliárias de Valença (out/2026). Preços de anúncio, não de venda.</p>
+  </div>
+</section>
+
 <div id="oportunidades">
 
 <nav class="opp-nav" aria-label="Oportunidades">
   <div class="opp-nav-inner">
-    <a href="#imobiliaria" class="opp-tab active" onclick="setTab(this)">
-      <span class="opp-tab-num">1</span>Incorporação
+    <a href="#loteamento" class="opp-tab active" onclick="setTab(this)">
+      <span class="opp-tab-num">1</span>Loteamento
+    </a>
+    <a href="#imobiliaria" class="opp-tab" onclick="setTab(this)">
+      <span class="opp-tab-num">2</span>Incorporação
     </a>
     <a href="#solar" class="opp-tab" onclick="setTab(this)">
-      <span class="opp-tab-num">2</span>Energia Solar
+      <span class="opp-tab-num">3</span>Energia Solar
     </a>
     <a href="#telecom" class="opp-tab" onclick="setTab(this)">
-      <span class="opp-tab-num">3</span>Telecomunicações
+      <span class="opp-tab-num">4</span>Telecomunicações
     </a>
     <a href="#agro" class="opp-tab" onclick="setTab(this)">
-      <span class="opp-tab-num">4</span>Agronegócio
+      <span class="opp-tab-num">5</span>Agronegócio
     </a>
     <a href="#formulario" class="opp-tab" onclick="setTab(this)">
       Contato →
@@ -829,11 +912,68 @@
 </nav>
 
 
+<section class="opp sec-alt" id="loteamento">
+  <div class="wrap">
+    <div class="opp__hd fi">
+      <span class="eyebrow">Loteamento · Construção horizontal</span>
+      <h2 class="h2">10.000 m² para lotear em área urbana.<br/><span class="gold">Cerca de 26 lotes em bairro com demanda ativa.</span></h2>
+      <div class="rule"></div>
+      <p class="lead">Para loteador ou construtor local: área contínua em ZR3, entorno já urbanizado, acesso por estrada e documentação em dia. Venda direta ou permuta em lotes.</p>
+    </div>
+    <div class="opp__grid">
+      <div class="fi">
+        <div class="tech-box">
+          <div class="tech-box__title">Ficha técnica · Loteamento</div>
+          <div class="tech-row"><span>Área total</span><strong>10.000 m²</strong></div>
+          <div class="tech-row"><span>Zoneamento</span><strong>ZR3, Cambota, Valença/RJ</strong></div>
+          <div class="tech-row"><span>Entorno</span><strong>Loteamentos e conjunto habitacional consolidados</strong></div>
+          <div class="tech-row"><span>Referência de lote no bairro</span><strong>~220 m² anunciados por até R$ 120 mil</strong></div>
+          <div class="tech-row"><span>Topografia</span><strong>desnível 10 a 15 m, projeto acompanha curvas de nível</strong></div>
+          <div class="tech-row"><span>Modelo de negócio</span><strong>Venda direta ou permuta em lotes</strong></div>
+        </div>
+        <div class="pqa">
+          <strong>Por que agora?</strong>
+          <p>O bairro já está ocupado e esta é uma área contínua de 10.000 m². Quem lotear atende a demanda por lote urbano que hoje é suprida por anúncios avulsos.</p>
+        </div>
+        <div class="opp__steps" style="margin-top:24px">
+          <div class="opp__step"><div class="step-num">1</div><div><h4>Visita e levantamento</h4><p>Topografia, acessos e conferência do zoneamento na prefeitura, sem compromisso.</p></div></div>
+          <div class="opp__step"><div class="step-num">2</div><div><h4>Estudo de parcelamento</h4><p>Desenho preliminar de quadras e lotes conforme a lei de parcelamento de Valença.</p></div></div>
+          <div class="opp__step"><div class="step-num">3</div><div><h4>Proposta</h4><p>Compra direta ou permuta em lotes, negociada diretamente com a proprietária.</p></div></div>
+        </div>
+        <a href="#formulario" class="btn">Quero avaliar o loteamento</a>
+      </div>
+      <div class="calc fi" style="transition-delay:.14s">
+        <div class="calc__title">Estimativa de Loteamento</div>
+        <div class="calc-field">
+          <label>Tamanho médio do lote: <strong id="lt-a">250</strong> m²</label>
+          <input type="range" id="sl-lt-a" min="200" max="400" value="250" step="10" oninput="calcLot()">
+        </div>
+        <div class="calc-field">
+          <label>Preço médio por lote: <strong id="lt-p">R$ 110 mil</strong></label>
+          <input type="range" id="sl-lt-p" min="80" max="150" value="110" step="5" oninput="calcLot()">
+        </div>
+        <div class="calc-result">
+          <div class="res-lbl">Lotes estimados</div>
+          <div class="res-val" id="lt-n">26 lotes</div>
+          <div class="res-sub">Considerando 35% da área para vias e áreas públicas</div>
+        </div>
+        <div class="calc-result">
+          <div class="res-lbl">VGV estimado do loteamento</div>
+          <div class="res-val" id="lt-v">R$ 2,86 M</div>
+          <div class="res-sub" id="lt-s"></div>
+        </div>
+        <p class="disc">Estimativa. O percentual de áreas públicas e o lote mínimo seguem a lei de parcelamento de Valença; o desnível pode reduzir o número de lotes. Preço por lote baseado em anúncios em Cambota (out/2026). Não constitui garantia de rentabilidade.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <section class="opp" id="imobiliaria">
   <div class="wrap">
     <div class="opp__hd fi">
       <span class="eyebrow">Incorporação Imobiliária</span>
-      <h2 class="h2">ZR3 · 4 pavimentos · CA 1,5.<br/><span class="gold">~R$35M de VGV. Permuta física disponível.</span></h2>
+      <h2 class="h2">ZR3 · 4 pavimentos · CA 1,5.<br/><span class="gold">R$32–35M de VGV estimado. Permuta física disponível.</span></h2>
       <div class="rule"></div>
       <p class="lead">Documentação limpa, zoneamento confirmado, proprietária disponível para permuta física — sem desembolso de caixa na aquisição do terreno.</p>
     </div>
@@ -869,7 +1009,7 @@
           </div>
           <div class="tech-row">
             <span>VGV estimado</span>
-            <strong>~R$ 35 milhões (base: R$4.200/m²)</strong>
+            <strong>R$ 32 a 35 milhões (base: R$4.200/m²)</strong>
           </div>
           <div class="tech-row">
             <span>Modelo de negócio</span>
@@ -878,7 +1018,7 @@
         </div>
 
         <p style="color:var(--muted); margin-bottom:12px; font-size:.9rem;">
-          Valença/RJ tem ~80 mil habitantes e absorção residencial de cidades médias do interior fluminense. Perfil compatível com <strong style="color:var(--white)">MCMV Faixa 2-3</strong> (demanda garantida por financiamento CEF) e médio padrão. A proprietária aceita <strong style="color:var(--white)">permuta em unidades</strong> — a incorporadora não desembolsa caixa na aquisição.
+          Valença/RJ tem 68 mil habitantes (IBGE, Censo 2022) e fica entre Volta Redonda, Juiz de Fora e o Rio. Perfil compatível com <strong style="color:var(--white)">MCMV Faixa 2-3</strong> (demanda garantida por financiamento CEF) e médio padrão. A proprietária aceita <strong style="color:var(--white)">permuta em unidades</strong> — a incorporadora não desembolsa caixa na aquisição.
         </p>
 
         <div class="pqa">
@@ -994,7 +1134,7 @@
 
         <div class="pqa">
           <strong>Por que agora?</strong>
-          <p>A Resolução Normativa ANEEL nº 1.000/2021 consolidou as regras de GD compartilhada. Empresas que travam terrenos hoje garantem posição na fila de solicitação de acesso à rede — que cresce mês a mês em todo o interior do RJ.</p>
+          <p>A Lei 14.300/2022 e a REN ANEEL 1.059/2023 definem as regras da geração distribuída. Quem garante área próxima à rede agora entra antes na fila de acesso da distribuidora.</p>
         </div>
 
         <div class="opp__steps" style="margin-top:24px">
@@ -1099,7 +1239,7 @@
 
         <div class="pqa">
           <strong>Por que agora?</strong>
-          <p>O rollout 5G no interior do Brasil exige densificação de sites — operadoras estão em busca ativa de pontos candidatos em cidades médias. Sites aprovados hoje entram no pipeline de 2026–2027.</p>
+          <p>O rollout 5G no interior do Brasil exige densificação de sites — operadoras estão em busca ativa de pontos candidatos em cidades médias. Sites aprovados agora entram no pipeline de expansão de 2027.</p>
         </div>
 
         <div class="opp__steps" style="margin-top:24px">
@@ -1203,7 +1343,7 @@
 
         <div class="pqa">
           <strong>Por que agora?</strong>
-          <p>A demanda de proteína animal no mercado interno segue crescendo. Integradores do Sul Fluminense têm deficit de capacidade instalada — estão ativos na busca por novos parceiros de integração na região de Valença, Vassouras e Piraí.</p>
+          <p>O Brasil registrou no 1º trimestre de 2026 o maior volume de abate de frango da série histórica. Área com água, acesso direto para caminhão e contrato de arrendamento registrado garante renda fixa ao proprietário, independente do desempenho do lote.</p>
         </div>
 
         <div class="opp__steps" style="margin-top:24px">
@@ -1291,8 +1431,8 @@
 
         <div class="form-contact">
           <p>Prefere contato imediato?</p>
-          <p><a href="https://wa.me/34634294887?text=Olá,%20vi%20o%20terreno%20em%20Valença%2FRJ%20e%20gostaria%20de%20mais%20informações." target="_blank" rel="noopener noreferrer">Falar pelo WhatsApp →</a></p>
-          <p><a href="tel:+5524988345768">(24) 98834-5768</a></p>
+          <p>WhatsApp: <a href="https://wa.me/34634294887?text=Olá,%20vi%20o%20terreno%20em%20Valença%2FRJ%20e%20gostaria%20de%20mais%20informações." target="_blank" rel="noopener noreferrer">+34 634 294 887 →</a></p>
+          <p>Telefone: <a href="tel:+5524988345768">(24) 98834-5768</a></p>
         </div>
       </div>
 
@@ -1313,6 +1453,7 @@
             <label for="int">Interesse</label>
             <select id="int" name="interesse" required>
               <option value="">Selecione...</option>
+              <option>Loteamento / construção horizontal</option>
               <option>Incorporação Imobiliária</option>
               <option>Energia Solar</option>
               <option>Torre de Telecomunicações</option>
@@ -1340,6 +1481,19 @@
 </section>
 
 
+<section class="share">
+  <div class="wrap">
+    <span class="eyebrow">Indique</span>
+    <h2 class="h2">Conhece alguém que procura área em Valença?</h2>
+    <p>Loteador, construtor, investidor ou corretor da região. Envie o link para quem pode se interessar.</p>
+    <div class="share-btns">
+      <a class="btn btn-wa" id="share-wa" href="https://wa.me/?text=Terreno%20urbano%20de%2010.000%20m%C2%B2%20%C3%A0%20venda%20em%20Valen%C3%A7a%2FRJ%2C%20bairro%20Cambota%2C%20ZR3.%20https%3A%2F%2Fterrenovalenca.com.br%2F" target="_blank" rel="noopener noreferrer">Compartilhar no WhatsApp</a>
+      <button type="button" class="btn btn-ghost" id="copy-link">Copiar link</button>
+    </div>
+    <div id="copy-ok">Link copiado.</div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <div class="foot-grid">
@@ -1352,15 +1506,27 @@
       <div>
         <div class="foot-title">Contato</div>
         <ul class="foot-list">
-          <li><a href="https://wa.me/34634294887?text=Olá,%20vi%20o%20terreno%20em%20Valença%2FRJ%20e%20gostaria%20de%20mais%20informações." target="_blank" rel="noopener noreferrer">Falar pelo WhatsApp →</a></li>
-          <li><a href="tel:+5524988345768">(24) 98834-5768</a></li>
+          <li><a href="https://wa.me/34634294887?text=Olá,%20vi%20o%20terreno%20em%20Valença%2FRJ%20e%20gostaria%20de%20mais%20informações." target="_blank" rel="noopener noreferrer">WhatsApp +34 634 294 887 →</a></li>
+          <li>Telefone <a href="tel:+5524988345768">(24) 98834-5768</a></li>
           <li>Cambota · Valença, Rio de Janeiro</li>
+        </ul>
+      </div>
+      <div>
+        <div class="foot-title">Por perfil</div>
+        <ul class="foot-list">
+          <li><a href="/area-para-loteamento-valenca-rj/">Área para loteamento</a></li>
+          <li><a href="/terreno-incorporacao-valenca-rj/">Terreno para incorporação</a></li>
+          <li><a href="/chacara-a-venda-valenca-rj/">Chácara à venda</a></li>
+          <li><a href="/terreno-usina-solar-rj/">Área para usina solar</a></li>
+          <li><a href="/area-torre-telecom-valenca-rj/">Área para torre telecom</a></li>
+          <li><a href="/area-avicultura-valenca-rj/">Área para avicultura</a></li>
         </ul>
       </div>
       <div>
         <div class="foot-title">Navegação</div>
         <ul class="foot-list">
           <li><a href="#ativo">O Terreno</a></li>
+          <li><a href="#loteamento">Loteamento</a></li>
           <li><a href="#imobiliaria">Incorporação</a></li>
           <li><a href="#solar">Energia Solar</a></li>
           <li><a href="#telecom">Telecomunicações</a></li>
@@ -1376,6 +1542,19 @@
   </div>
 </footer>
 </main>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <button type="button" class="lb-btn lb-close" id="lb-close" aria-label="Fechar">×</button>
+  <button type="button" class="lb-btn lb-prev" id="lb-prev" aria-label="Anterior">‹</button>
+  <img id="lb-img" src="" alt="">
+  <button type="button" class="lb-btn lb-next" id="lb-next" aria-label="Próxima">›</button>
+  <div class="lb-cap" id="lb-cap"></div>
+</div>
+
+<div class="m-bar">
+  <a class="btn btn-wa" href="https://wa.me/34634294887?text=Ol%C3%A1%2C%20vi%20o%20terreno%20em%20Valen%C3%A7a%2FRJ%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  <a class="btn" href="#formulario">Pedir dossiê</a>
+</div>
 
 <a class="wa-float" href="https://wa.me/34634294887?text=Olá%2C%20vi%20o%20terreno%20em%20Valen%C3%A7a%2FRJ%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
    target="_blank" rel="noopener noreferrer" aria-label="Contato via WhatsApp">
@@ -1426,7 +1605,7 @@ function setTab(el) {
   document.querySelectorAll('.opp-tab').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
 }
-const sections = ['imobiliaria','solar','telecom','agro','formulario'];
+const sections = ['loteamento','imobiliaria','solar','telecom','agro','formulario'];
 const tabs = document.querySelectorAll('.opp-tab');
 window.addEventListener('scroll', () => {
   const offset = window.innerWidth <= 768 ? 70 : 120;
@@ -1492,6 +1671,38 @@ function calcAgro(v) {
   document.getElementById('agro-a').textContent     = '~' + (v * areaG).toLocaleString('pt-BR') + ' m²';
 }
 calcAgro(2);
+
+function calcLot() {
+  const a = +document.getElementById('sl-lt-a').value;
+  const pr = +document.getElementById('sl-lt-p').value * 1000;
+  const n = Math.floor(10000 * 0.65 / a);
+  const v = n * pr;
+  document.getElementById('lt-a').textContent = a;
+  document.getElementById('lt-p').textContent = 'R$ ' + (pr/1000) + ' mil';
+  document.getElementById('lt-n').textContent = n + ' lotes';
+  document.getElementById('lt-v').textContent = 'R$ ' + (v/1e6).toFixed(2).replace('.', ',') + ' M';
+  document.getElementById('lt-s').textContent = n + ' lotes de ' + a + ' m² a R$ ' + (pr/1000) + ' mil';
+}
+calcLot();
+
+(function(){
+  const btns = [...document.querySelectorAll('#galeria button')];
+  const lb = document.getElementById('lb'), img = document.getElementById('lb-img'), cap = document.getElementById('lb-cap');
+  let i = 0;
+  function show(k){ i = (k + btns.length) % btns.length; const im = btns[i].querySelector('img'); img.src = im.src; img.alt = im.alt; cap.textContent = im.alt; lb.classList.add('open'); }
+  btns.forEach((b,k)=> b.addEventListener('click', ()=> show(k)));
+  document.getElementById('lb-close').onclick = ()=> lb.classList.remove('open');
+  document.getElementById('lb-prev').onclick = ()=> show(i-1);
+  document.getElementById('lb-next').onclick = ()=> show(i+1);
+  lb.addEventListener('click', e=>{ if (e.target === lb) lb.classList.remove('open'); });
+  document.addEventListener('keydown', e=>{ if(!lb.classList.contains('open')) return; if(e.key==='Escape') lb.classList.remove('open'); if(e.key==='ArrowLeft') show(i-1); if(e.key==='ArrowRight') show(i+1); });
+  const cp = document.getElementById('copy-link');
+  cp.addEventListener('click', async ()=>{
+    const url = 'https://terrenovalenca.com.br/';
+    try { if (navigator.share) { await navigator.share({title:'Terreno 10.000 m² em Valença/RJ', url}); return; } await navigator.clipboard.writeText(url); } catch(e) {}
+    document.getElementById('copy-ok').style.display = 'block';
+  });
+})();
 
 document.getElementById('cform').addEventListener('submit', function(e) {
   e.preventDefault();
