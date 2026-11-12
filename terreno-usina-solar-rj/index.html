@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "RealEstateListing", "name": "Terreno para usina solar em Valença/RJ: cerca de 0,8 ha para geração distribuída", "description": "Área de cerca de 0,8 ha para usina solar de geração distribuída em Valença/RJ, área de concessão da Light. Capacidade estimada de ~720 kWp. Arrendamento de 15 a 25 anos.", "url": "https://www.terrenovalenca.com.br/terreno-usina-solar-rj/", "image": "https://www.terrenovalenca.com.br/campo.jpeg", "address": {"@type": "PostalAddress", "streetAddress": "Estrada Valença–Rio das Flores, Nº 3323, Bairro Cambota", "addressLocality": "Valença", "addressRegion": "RJ", "postalCode": "27600-000", "addressCountry": "BR"}, "geo": {"@type": "GeoCoordinates", "latitude": "-22.2211", "longitude": "-43.6848"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Qual a área disponível para a usina?", "acceptedAnswer": {"@type": "Answer", "text": "Cerca de 0,8 ha, ou 8.000 m², em área contínua."}}, {"@type": "Question", "name": "Qual a distribuidora?", "acceptedAnswer": {"@type": "Answer", "text": "Valença/RJ está na área de concessão da Light."}}, {"@type": "Question", "name": "Qual o modelo de contrato?", "acceptedAnswer": {"@type": "Answer", "text": "Arrendamento de 15 a 25 anos com reajuste anual, registrado em cartório."}}]}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Terreno à venda em Valença RJ", "item": "https://www.terrenovalenca.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Energia solar no RJ", "item": "https://www.terrenovalenca.com.br/terreno-usina-solar-rj/"}]}]</script>
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "RealEstateListing", "name": "Terreno para usina solar em Valença/RJ: cerca de 0,8 ha para geração distribuída", "description": "Área de cerca de 0,8 ha para usina solar de geração distribuída em Valença/RJ, área de concessão da Light. Capacidade estimada de ~720 kWp. Arrendamento de 15 a 25 anos.", "url": "https://www.terrenovalenca.com.br/terreno-usina-solar-rj/", "image": "https://www.terrenovalenca.com.br/campo.jpeg", "address": {"@type": "PostalAddress", "streetAddress": "Estrada Valença–Rio das Flores, Nº 3323, Bairro Cambota", "addressLocality": "Valença", "addressRegion": "RJ", "postalCode": "27600-000", "addressCountry": "BR"}, "geo": {"@type": "GeoCoordinates", "latitude": "-22.2211", "longitude": "-43.6848"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Qual a área disponível para a usina?", "acceptedAnswer": {"@type": "Answer", "text": "Cerca de 0,8 ha, ou 8.000 m², em área contínua."}}, {"@type": "Question", "name": "Qual a distribuidora?", "acceptedAnswer": {"@type": "Answer", "text": "Valença/RJ está na área de concessão da Light."}}, {"@type": "Question", "name": "Qual o modelo de contrato?", "acceptedAnswer": {"@type": "Answer", "text": "Arrendamento de 15 a 25 anos com reajuste anual, registrado em cartório."}}, {"@type": "Question", "name": "Há rede de média tensão próxima?", "acceptedAnswer": {"@type": "Answer", "text": "Precisa ser confirmada no trecho. É um dos pontos da vistoria técnica."}}, {"@type": "Question", "name": "Quando começa o pagamento do arrendamento?", "acceptedAnswer": {"@type": "Answer", "text": "Na data de conexão da usina à rede da distribuidora."}}]}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Terreno à venda em Valença RJ", "item": "https://www.terrenovalenca.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Energia solar no RJ", "item": "https://www.terrenovalenca.com.br/terreno-usina-solar-rj/"}]}]</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--gold:#C8A96E;--ink:#1A1A18;--bg:#F8F5EF;--card:#F0EDE6;--muted:#6B6760;--r:5px}
@@ -57,6 +57,14 @@ details p{margin-top:10px;color:#3b3934}
 .more a:hover{border-color:var(--gold)}
 footer{background:#1A1A18;color:#ABA69E;font-size:.78rem;padding:30px 0 90px}
 .disc{font-size:.74rem;color:var(--muted);font-style:italic;margin-top:14px}
+.why li{margin-bottom:14px;color:#3b3934;list-style:none;padding-left:16px;border-left:2px solid var(--gold)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+.steps div{background:var(--card);border-radius:var(--r);padding:20px}
+.steps b{display:block;color:var(--gold);font-size:.72rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.steps h3{font-size:1rem;margin-bottom:6px}
+.steps p{font-size:.88rem;color:#3b3934}
+.why h2{font-family:'Playfair Display',serif;font-size:1.7rem;margin-bottom:22px}
+@media(max-width:768px){.steps{grid-template-columns:1fr}}
 @media(max-width:768px){.grid{grid-template-columns:1fr;gap:32px}.photos{grid-template-columns:1fr 1fr}.more ul{grid-template-columns:1fr}.row{flex-direction:column;gap:2px}.row strong{text-align:left}}
 </style>
 </head>
@@ -78,15 +86,20 @@ footer{background:#1A1A18;color:#ABA69E;font-size:.78rem;padding:30px 0 90px}
 <aside class="box"><h2>Dados principais</h2><div class="row"><span>Área para GD</span><strong>~0,8 ha (~8.000 m²)</strong></div><div class="row"><span>Capacidade estimada</span><strong>~720 kWp</strong></div><div class="row"><span>Geração estimada</span><strong>~1.000 MWh/ano</strong></div><div class="row"><span>Irradiação</span><strong>~4,8 kWh/m²/dia (CRESESB)</strong></div><div class="row"><span>Distribuidora</span><strong>Light</strong></div><div class="row"><span>Modelo</span><strong>arrendamento 15 a 25 anos</strong></div></aside>
 </div>
 <div class="photos">
-<img src="/sede.jpeg" alt="Sede da chácara em Cambota, Valença/RJ" loading="lazy" width="400" height="300">
 <img src="/campo.jpeg" alt="Campo em grama da área de 10.000 m² em Valença/RJ" loading="lazy" width="400" height="300">
+<img src="/hero.jpeg" alt="Vista do terreno de 10.000 m² em Cambota, Valença/RJ" loading="lazy" width="400" height="300">
 <img src="/parnoramica.jpeg" alt="Vista panorâmica do terreno em Valença/RJ" loading="lazy" width="400" height="300">
 </div>
 <p class="disc">Valores estimados com base em dados de mercado; não constituem oferta ou garantia de rentabilidade.</p>
 </div></section>
+<section class="sec why"><div class="wrap">
+<h2>Pontos técnicos para a empresa solar</h2>
+<ul><li><strong>Regulação.</strong> A Lei 14.300/2022 e a REN ANEEL 1.059/2023 definem as regras da geração distribuída. Garantir área próxima à rede antecipa a entrada na fila de acesso da distribuidora.</li><li><strong>Topografia e rede.</strong> O desnível de 10 a 15 m recomenda estudo de tracker e de sombreamento. A disponibilidade de rede de média tensão no trecho ainda precisa ser confirmada.</li><li><strong>Conta de referência.</strong> 720 kWp × 1.400 h/ano × R$ 0,70/kWh resultam em receita bruta do projeto em torno de R$ 58.800/mês. O valor do arrendamento ao proprietário é negociado à parte.</li></ul>
+<div class="steps"><div><b>Etapa 1</b><h3>Envio de dados</h3><p>Coordenadas, topografia e informações da distribuidora, enviadas mediante solicitação.</p></div><div><b>Etapa 2</b><h3>Vistoria técnica</h3><p>Solo, declividade, acesso e viabilidade de conexão, por conta da empresa solar.</p></div><div><b>Etapa 3</b><h3>Contrato registrado</h3><p>Arrendamento com reajuste pelo IPCA. O pagamento começa na conexão à rede.</p></div></div>
+</div></section>
 <section class="sec faq"><div class="wrap">
 <h2>Perguntas frequentes</h2>
-<details><summary>Qual a área disponível para a usina?</summary><p>Cerca de 0,8 ha, ou 8.000 m², em área contínua.</p></details><details><summary>Qual a distribuidora?</summary><p>Valença/RJ está na área de concessão da Light.</p></details><details><summary>Qual o modelo de contrato?</summary><p>Arrendamento de 15 a 25 anos com reajuste anual, registrado em cartório.</p></details>
+<details><summary>Qual a área disponível para a usina?</summary><p>Cerca de 0,8 ha, ou 8.000 m², em área contínua.</p></details><details><summary>Qual a distribuidora?</summary><p>Valença/RJ está na área de concessão da Light.</p></details><details><summary>Qual o modelo de contrato?</summary><p>Arrendamento de 15 a 25 anos com reajuste anual, registrado em cartório.</p></details><details><summary>Há rede de média tensão próxima?</summary><p>Precisa ser confirmada no trecho. É um dos pontos da vistoria técnica.</p></details><details><summary>Quando começa o pagamento do arrendamento?</summary><p>Na data de conexão da usina à rede da distribuidora.</p></details>
 </div></section>
 <section class="sec more"><div class="wrap">
 <h2>Outros usos para a mesma área</h2>
